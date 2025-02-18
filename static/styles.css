@@ -1,0 +1,114 @@
+/* Centra il contenuto della pagina */
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5fefe;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Contenitore principale */
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Box contenitore */
+.container {
+    background: #ffffff;
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 12px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 20px;
+}
+
+/* Titolo */
+h1 {
+    color: #070b0d;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Stile per input e bottoni */
+input, button {
+    padding: 12px;
+    margin: 10px 0;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #ccd6e1;
+    font-size: 16px;
+}
+
+input {
+    background-color: #f9f9f9;
+    width: 95%;
+}
+
+button {
+    background-color: #39c8ca;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: bold;
+    width: 40%;
+}
+
+button:hover {
+    background-color: #40b5c4;
+    transform: scale(1.05);
+}
+
+/* Contenitore per testo e pulsante di copia */
+.copy-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* Testo non modificabile */
+textarea {
+    flex: 1;
+    min-width: 250px;
+    max-width: 100%;
+    height: auto;
+    min-height: 40px;
+    max-height: 100px;
+    resize: none;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid #ccd6e1;
+    padding: 8px;
+    font-family: monospace;
+    background-color: #f9f9f9;
+}
+
+/* Messaggio di copia */
+#copy-message {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #41a0bd;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Mostra il messaggio di conferma copia */
+.show {
+    opacity: 1 !important;
+}
+
+

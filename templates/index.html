@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criptatore e Generatore di Password</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="wrapper"> <!-- Contenitore centrale -->
+        <div class="container">
+            <h1>Criptatore & Generatore di Password</h1>
+
+            <!-- Form per criptare una password -->
+            <form method="POST">
+                <input type="text" name="password" placeholder="Inserisci la tua password" required>
+                <button type="submit" name="encrypt">Cripta</button>
+            </form>
+            
+            {% if hashed_password %}
+                <p><strong>Password Criptata:</strong></p>
+                <div class="copy-container">
+                    <textarea id="hashed_password" readonly>{{ hashed_password }}</textarea>
+                    <button onclick="copyToClipboard('hashed_password', this)">Copia</button>
+                </div>
+            {% endif %}
+
+            <hr>
+
+            <!-- Form per generare una password sicura -->
+            <form method="POST">
+                <label for="length">Lunghezza Password:</label>
+                <input type="number" name="length" value="12" min="8" max="30" required>
+                <button type="submit" name="generate">Genera Password</button>
+            </form>
+            
+            {% if generated_password %}
+                <p><strong>Password Generata:</strong></p>
+                <div class="copy-container">
+                    <textarea id="generated_password" readonly>{{ generated_password }}</textarea>
+                    <button onclick="copyToClipboard('generated_password', this)">Copia</button>
+                </div>
+            {% endif %}
+
+            <!-- Messaggio di copia -->
+            <div id="copy-message">Copiato con successo!</div>
+        </div>
+    </div>
+
+    <script>
+        function copyToClipboard(elementId, buttonElement) {
+            let textarea = document.getElementById(elementId);
+            textarea.select();
+            
+            navigator.clipboard.writeText(textarea.value).then(() => {
+                // Cambia il testo del pulsante
+                let originalText = buttonElement.innerText;
+                buttonElement.innerText = "Copiato!";
+                
+                // Mostra il messaggio di copia
+                let message = document.getElementById("copy-message");
+                message.classList.add("show");
+
+                setTimeout(() => {
+                    buttonElement.innerText = originalText; // Torna a "Copia"
+                    message.classList.remove("show"); // Nasconde il messaggio
+                }, 2000);
+            }).catch(err => {
+                console.error("Errore nella copia: ", err);
+            });
+        }
+    </script>
+</body>
+</html>
